@@ -1,0 +1,45 @@
+// Contains a function ArrMax.arrMax that finds and returns the largest element in the array a of length b.
+// a & b are both supplied as arguments
+
+// Put your code here.
+
+function ArrMax.arrMax 2
+
+push argument 0
+pop pointer 1
+//putting arg 0 (array a) in pointer slot
+push that 0
+
+//if i'm right, then that 0 is RAM[pointer 1]
+pop temp 0
+//temp 0 will track our ArrMax
+push constant 0
+pop temp 1
+
+label LOOP
+
+push temp 1
+push constant 1
+add
+pop temp 1
+push temp 1
+push argument 1
+eq
+if-goto STORE
+push pointer 1
+push constant 1
+add
+pop pointer 1
+push that 0
+push temp 0
+lt
+if-goto LOOP
+push that 0
+pop temp 0
+goto LOOP
+
+label STORE
+
+push temp 0
+
+return

@@ -1,0 +1,3 @@
+function myFunction 2
+call myFunction 2
+return

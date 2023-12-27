@@ -1,0 +1,2 @@
+function myFunc 1
+call myFunc 1

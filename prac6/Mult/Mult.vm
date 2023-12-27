@@ -1,0 +1,136 @@
+// Calculates a = x*y
+// a is a local variable
+// x & y are static variables
+
+// Put your code here.
+
+push constant 0
+pop local 0
+
+push static 0
+pop temp 1
+push static 1
+pop temp 2
+
+push static 0
+push constant 0
+eq
+if-goto ZERO
+
+push static 1
+push constant 0
+eq
+if-goto ZERO
+
+push static 0
+push constant 0
+gt
+if-goto AGZ
+goto ALZ
+
+label AGZ
+
+push static 1
+push constant 0
+gt
+if-goto AGZBGZ
+goto AGZBLZ
+
+label ALZ
+
+push static 1
+push constant 0
+gt
+if-goto ALZBGZ
+goto ALZBLZ
+
+label AGZBGZ
+
+push constant 0
+pop temp 0
+goto REL
+
+label AGZBLZ
+
+push constant 1
+neg
+pop temp 0
+push temp 2
+neg
+pop temp 2
+goto REL
+
+label ALZBGZ
+
+push constant 1
+neg
+pop temp 0
+push temp 1
+neg
+pop temp 1
+goto REL
+
+label ALZBLZ
+push constant 0
+pop temp 0
+push temp 1
+neg
+pop temp 1
+push temp 2
+neg
+pop temp 2
+goto REL
+
+label REL
+
+push temp 1
+push temp 2
+gt
+if-goto SWAP
+goto LOOP
+
+label SWAP
+
+push temp 1
+push temp 2
+pop temp 1
+pop temp 2
+goto LOOP
+
+label LOOP
+
+push temp 2
+push local 0
+add
+pop local 0
+push temp 1
+push constant 1
+sub
+pop temp 1
+push temp 1
+push constant 0
+eq
+if-goto STORE
+goto LOOP
+
+label STORE
+
+push temp 0
+if-goto INV
+goto END
+
+label INV
+
+push local 0
+neg
+pop local 0
+goto END
+
+label ZERO
+
+push constant 0
+pop local 0
+goto END
+
+label END
+goto END

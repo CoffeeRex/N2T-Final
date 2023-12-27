@@ -1,0 +1,112 @@
+// Sorts the array of length R2 whose first element is at RAM[R1] in ascending order in place. Sets R0 to True (-1) when complete.
+// (R0, R1, R2 refer to RAM[0], RAM[1], and RAM[2], respectively.)
+
+// Put your code here.
+
+(SORTLOOP)
+    @R1
+    D=M
+    @arrstart
+    M=D
+    @R2
+    D=M
+    @arrlength
+    M=D
+    @arrstart
+    D=M
+    @min
+    M=D
+    @arrstart
+    M=M+1
+    @arrlength
+    M=M-1
+    D=M
+    @STORE
+    D;JLE
+(MINLOOP)
+    @min
+    D=M
+    A=D
+    D=M
+    @MINPOS
+    D;JGT
+    @MINLTE
+    0;JMP
+(MINPOS)
+    @arrstart
+    D=M
+    A=D
+    D=M
+    @SAMESIGN
+    D;JGT
+    @MINLARGER
+    0;JMP
+(MINLTE)
+    @arrstart
+    D=M
+    A=D
+    D=M
+    @TOLOOP
+    D;JGT
+    @SAMESIGN
+    0;JMP
+(SAMESIGN)
+    @arrstart
+    D=M
+    A=D
+    D=M
+    @temp
+    M=D
+    @min
+    D=M
+    A=D
+    D=M
+    @temp
+    D=D-M
+    @MINLARGER
+    D;JGT
+    @TOLOOP
+    0;JMP
+(MINLARGER)
+    @arrstart
+    D=M
+    @min
+    M=D
+(TOLOOP)
+    @arrstart
+    M=M+1
+    @arrlength
+    M=M-1
+    D=M
+    @MINLOOP
+    D;JGT
+(STORE)
+    @R1
+    A=M
+    D=M
+    @temp
+    M=D
+    @min
+    A=M
+    D=M
+    @R1
+    A=M
+    M=D
+    @temp
+    D=M
+    @min
+    A=M
+    M=D
+    @R1 //this is where we adjust the greater array start and length for the sorting algorithm
+    M=M+1
+    @R2
+    M=M-1
+    D=M
+    @SORTLOOP
+    D;JGT
+(FIN)
+    @R0
+    M=-1
+(END)
+    @END
+    0;JMP

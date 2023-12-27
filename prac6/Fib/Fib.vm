@@ -1,0 +1,66 @@
+// Contains a function Fib.fib that calculates and returns the nth Fibonacci number recursively
+// n is supplied as an argument
+
+// Put your code here.
+
+function Fib.fib 1
+
+push argument 0
+push constant 0
+eq
+if-goto STOREZERO
+
+push argument 0
+push constant 0
+lt
+if-goto BADINPUT
+
+//initialising a counter
+
+push argument 0
+pop temp 0
+
+push constant 0
+pop temp 1
+push constant 1
+pop temp 2
+
+//setting our fib base cases
+
+label LOOP
+
+push temp 0
+push constant 1
+sub
+pop temp 0
+push temp 0
+push constant 0
+eq
+if-goto STORE
+
+push temp 1
+push temp 2
+add
+pop temp 3
+push temp 2
+pop temp 1
+push temp 3
+pop temp 2
+goto LOOP
+
+label STOREZERO
+
+push constant 0
+return
+
+label BADINPUT
+
+push constant 1
+neg
+return
+
+label STORE
+
+push temp 2
+return
+
